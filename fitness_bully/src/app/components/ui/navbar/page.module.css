@@ -1,0 +1,10 @@
+.container{
+    display: flex;
+    background-color: green;
+}
+
+.children{
+    margin-left: auto;
+    margin-right: 5%;
+    padding-top: 1%;
+}
