@@ -25,6 +25,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   //TODO: Add header and footer items to this file
+  
   return (
     <html lang="en">
     <body className={`${geistSans.variable} ${geistMono.variable}`}>

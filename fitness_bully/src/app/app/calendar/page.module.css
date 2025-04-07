@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    width: 100vw;
+    margin: 0; /* Remove default margin */
+}
+
+/* Apply styles to CalendarView, making it 50% larger */
+/* Apply styles to CalendarView, making it 50% larger */
+.calendarView {
+    width: 100vw; /* 50% larger than the original 80% */
+    max-width: 1200px; /* Max width to avoid it becoming too wide */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Add a subtle shadow */
+    border-radius: 8px; /* Optional: Rounded corners */
+    padding: 20px; /* Optional: Padding inside the calendar */
+    height:60vh;
+}

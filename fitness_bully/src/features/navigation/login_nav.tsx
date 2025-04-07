@@ -17,7 +17,6 @@ export default function LoginNav(){
     return(
         <div>
             <a href="/api/auth/login">Login</a>
-            <button onClick={() =>console.log(user)}>User info</button>
         </div>
     );
 }

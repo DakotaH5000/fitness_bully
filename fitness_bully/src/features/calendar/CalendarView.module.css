@@ -1,0 +1,23 @@
+.container{
+    height:60vh;
+}
+
+
+
+.PopupDiv {
+    position:fixed; /* Position relative to the viewport */
+    background-color: tan;
+    top: 50%;           /* Vertically center the element */
+    left: 50%;          /* Horizontally center the element */
+    transform: translate(-50%, -40%); /* Adjust position to truly center it */
+    z-index: 999;       /* Ensure it appears in front of other elements */
+    display: flex;
+    align-items: center;
+    justify-content: center;  /* Optionally center the content inside the PopupDiv */
+    width: 30vw;           /* Full width, but can be adjusted */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Optional: Subtle shadow */
+    border-radius: 8px;      /* Optional: Rounded corners */
+    padding: 20px;           /* Optional: Padding inside the PopupDiv */
+    height: 60vh;            /* Control the height as needed */
+    border: 5px solid tan;
+}

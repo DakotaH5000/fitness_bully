@@ -6,9 +6,15 @@ import RegisterForm from "@/features/auth/register_form";
 import Link from "next/link";
 import { paths } from "@/config/paths";
 import { useUser } from "@auth0/nextjs-auth0/client";
+import { useEffect } from "react";
+
+
 
 export default function Home() {
   const { user, error, isLoading } = useUser();
+
+
+
 
   if (isLoading){
     return(
@@ -18,12 +24,13 @@ export default function Home() {
     );
   }
 
+
   if(user){
   return (
     <div className={styles.page}>
       <main className={styles.main}>
       <div>
-      <h1>Hello {user.given_name}</h1>
+      <h1>Hello, {user.given_name}!</h1>
     </div>
       </main>
       <footer className={styles.footer}>
@@ -36,7 +43,7 @@ export default function Home() {
     <div className={styles.page}>
       <main className={styles.main}>
       <div>
-      <h1>Logged Out</h1>
+      <h1>Please login for motivation!</h1>
     </div>
       </main>
       <footer className={styles.footer}>

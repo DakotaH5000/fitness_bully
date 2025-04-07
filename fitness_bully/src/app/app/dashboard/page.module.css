@@ -1,8 +1,6 @@
 .container{
     display: flex;
-    background-color: green;
-    justify-content: flex-end;
-    width: 100%;
+    background-color: blue;
 }
 
 .children{
@@ -10,4 +8,3 @@
     margin-right: 5%;
     padding-top: 1%;
 }
-
