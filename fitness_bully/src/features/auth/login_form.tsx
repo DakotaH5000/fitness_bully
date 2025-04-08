@@ -18,7 +18,7 @@ export default function LoginForm() {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data)
 
 
-  console.log(watch("email")) // watch input value by passing the name of it
+
 
 
   return (
@@ -26,7 +26,7 @@ export default function LoginForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       {/* register your input into the hook by invoking the "register" function */}
       <label>Email</label>
-      <input defaultValue="test" {...register("email", {required: true})} />
+      <input {...register("email", {required: true})} />
       {errors.email&& <span>Enter an email address</span>}
 
 

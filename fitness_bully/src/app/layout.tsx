@@ -1,8 +1,10 @@
+'use client';
+
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/ui/navbar/page";
-import { UserProvider } from '@auth0/nextjs-auth0/client';
+import { SessionProvider } from "next-auth/react"
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,10 +16,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  title: "Fitness Bully",
-  description: "Your personal negative reinforcement trainer",
-};
 
 export default function RootLayout({
   children,
@@ -28,15 +26,15 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+    <SessionProvider>
     <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <UserProvider>
       <header>
       <NavBar />
       </header>
         {children}
-      <footer></footer>
-      </UserProvider>
+      <footer></footer>   
       </body>
+      </SessionProvider>
     </html>
   );
 }

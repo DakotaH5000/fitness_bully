@@ -7,7 +7,10 @@ export const paths = {
             getHref: () => '/app/dashboard'
         },
         calendar:{
-            getHref: () => 'calendar'
+            getHref: () => '/app/calendar'
+        },
+        preferences:{
+            getHref: () =>'/app/preferences'
         }
     },
     auth:{    

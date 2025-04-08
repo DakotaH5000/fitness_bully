@@ -3,13 +3,14 @@
 import LoginNav from "@/features/navigation/login_nav";
 import ToCalendar from "@/features/navigation/to_calendar";
 import styles from "./page.module.css"
-import { useUser } from "@auth0/nextjs-auth0/client";
+import { useSession, signIn, signOut } from "next-auth/react";
+import UserParams from "@/types/user"; 
+
 
 export default function NavBar(){
-
-    const { user, error, isLoading } = useUser();
-
-    if(user){
+    const { data: session } = useSession()
+/*
+    if(){
         return(
             <div className={styles.container}>
             <div className={styles.children}>
@@ -19,11 +20,24 @@ export default function NavBar(){
         </div>
         );
     }
+    */
+    if (session) {
+        return (
+            <div className={styles.container}>
+            <div className={styles.children}>
+            Signed in as {session?.user.name} <br />
+            <button onClick={() => signOut()}>Sign out</button>
+            </div>
+                </div>
+        )
+      }
+    
 
     return(
         <div className={styles.container}>
             <div className={styles.children}>
             <LoginNav />
+            <ToCalendar />
             </div>
         </div>
     );

@@ -1,14 +1,29 @@
-'use client';
-
-import { useForm, SubmitHandler } from "react-hook-form";
-import { EnumLike, input } from "zod";
 import UserParams from "@/types/user";
+import { SubmitHandler, useForm } from "react-hook-form";
+/* 
+type UserParams = {
+    given_name: string;
+    email: string,
+    phone_number: number,
+    email_verified: boolean,
+    phone_verified: boolean,
+    family_name: string,
+    user_id: string,
+    password: string,
+    carrier: string
+  }
+    */
 
 
 
 
 
-const fields = [
+
+
+
+export default function UserPreferencesForm(){
+
+  const fields = [
     {id:0, name:"email", label:"Email"},
     {id:1, name:"password", label:"Password"},
     {id:2, name:"given_name", label:"First Name"},
@@ -16,8 +31,6 @@ const fields = [
     {id:4, name:"phone_number", label:"Phone Number"}
 ]
 
-
-export default function RegisterForm() {
   const {
     register,
     handleSubmit,
@@ -25,15 +38,14 @@ export default function RegisterForm() {
     formState: { errors },
   } = useForm<UserParams>()
   const onSubmit: SubmitHandler<UserParams> = async (data) => {
-    const res = await fetch('/api/auth/signup',{
+    const res = await fetch('/api/db/userPreferences',{
       method: 'Post',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(data),
     });
-  }
-
+  } 
 
 
   return (
@@ -64,4 +76,6 @@ export default function RegisterForm() {
       <input type="submit" />
     </form>
   )
+
+
 }

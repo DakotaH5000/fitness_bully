@@ -1,8 +1,11 @@
 // app/api/db/route.ts
 import { createConnection } from '@/lib/db';
 import { NextResponse } from 'next/server';
+import UserParams from '@/types/user';
 
 export async function GET(req: Request) {
+    const body = await req.json();
+    const userData: UserParams =  body;
   try {
     const db = await createConnection();
 
@@ -12,22 +15,10 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Database connection failed' }, { status: 500 });
     }
 
-    let query = 'SELECT * FROM Users';
-
-    const url = new URL(req.url)
-    const email = url.searchParams.get('email')
-    let quereyParams = [];
-    if (email){
-      query += ' WHERE EMAIL = ?'
-      quereyParams.push(email);
-    }
-    const [Users] = await db.query(query, quereyParams)
-    console.log('Returned Users:', Users);
+    const [Users] = await db.query('SELECT * FROM UserTimes WHERE user_id = ?', [userData.user_id]);
     return NextResponse.json(Users);
-
   } catch (error: any) {
     console.error('DB error:', error);
-
     return NextResponse.json({ error: error.message || 'Unknown error' }, { status: 500 });
   }
 }
