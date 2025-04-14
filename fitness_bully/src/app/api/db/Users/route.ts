@@ -11,9 +11,10 @@ export async function GET(req: Request) {
       console.error('DB is undefined!');
       return NextResponse.json({ error: 'Database connection failed' }, { status: 500 });
     }
-
+    //Baseline query
     let query = 'SELECT * FROM Users';
-
+    //TODO to rework and add all search params
+    //Add search Params to Select * to get user if exsists meeting condition.
     const url = new URL(req.url)
     const email = url.searchParams.get('email')
     let quereyParams = [];
@@ -21,8 +22,9 @@ export async function GET(req: Request) {
       query += ' WHERE EMAIL = ?'
       quereyParams.push(email);
     }
+
     const [Users] = await db.query(query, quereyParams)
-    console.log('Returned Users:', Users);
+    //Code returns an array of returned users.
     return NextResponse.json(Users);
 
   } catch (error: any) {

@@ -27,7 +27,7 @@ export default function Home() {
     }
   }, [session?.user?.email]);
 
-  
+  //If user is authenticated and has filled out local data, allow them to progress to app.
   if(session && isDBRegistered){
   return (
     <div className={styles.page}>
@@ -41,7 +41,7 @@ export default function Home() {
     </div>
   );
   }
-
+  //If user is authenticated, but has not filled out local data.
   if(session && !isDBRegistered){
     return(
       <div className={styles.page}>
@@ -56,7 +56,7 @@ export default function Home() {
     </div>
     );
   }
-
+//If user is not authed, send them to defautl landing page
   return (
     <div className={styles.page}>
       <main className={styles.main}>

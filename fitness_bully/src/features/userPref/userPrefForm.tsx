@@ -1,5 +1,6 @@
 import UserParams from "@/types/user";
 import { SubmitHandler, useForm } from "react-hook-form";
+import styles from './userPrefForm.module.css'
 /* 
 type UserParams = {
     given_name: string;
@@ -50,20 +51,23 @@ export default function UserPreferencesForm(){
 
   return (
     /* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-    <form onSubmit={handleSubmit(onSubmit)}>
+    <form onSubmit={handleSubmit(onSubmit)} className={styles.container}>
       
       {/* register your input into the hook by invoking the "register" function */}
 
       {fields.map((field) => 
-      <div key={field.name}>
-      <label>{field.label}</label>
-      <input {...register(field.name as keyof UserParams , {required: true})} />
-      {errors[field.name as keyof UserParams] && <span>This field is required</span>}
+      <div key={field.name}
+      className={styles.userInputLine}>
+      <label className={styles.userInputLabel}>{field.label}</label>
+      <input className={styles.inputItem} {...register(field.name as keyof UserParams , {required: true})} />
+      {errors[field.name as keyof UserParams] && <span className={styles.spanText}>This field is required</span>}
       </div>
         )}
 
-    <label>Carrier</label>
-    <select {...register("carrier", { required: true })}>
+    {/*Value will be written to the data base as a string. User can't modify out side of dropdowns so should work similar to an ENUM, should not need to be decalred as one.*/}
+    <div className={styles.userInputLine}>
+    <label className={styles.userInputLabel}>Carrier</label>
+    <select className={styles.select} {...register("carrier", { required: true })}>
         <option value="Verizon">Verizon</option>
         <option value="AT&T">AT&T</option>
         <option value="T-Mobile">T-Mobile</option>
@@ -71,9 +75,10 @@ export default function UserPreferencesForm(){
         <option value="Boost">Boost</option>
         <option value="Cricket">Cricket</option>
     </select>
+    </div>
     {errors.carrier && <span>This field is required</span>}
     
-      <input type="submit" />
+      <input type="submit" className={styles.submit}/>
     </form>
   )
 

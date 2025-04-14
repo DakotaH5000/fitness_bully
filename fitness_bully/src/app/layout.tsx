@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   //TODO: Add header and footer items to this file
-  
+  //Session provider is from next-auth to provide the user authenticated state, provided thanks to Google!
   return (
     <html lang="en">
     <SessionProvider>
