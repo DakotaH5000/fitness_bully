@@ -1,6 +1,7 @@
 import UserParams from "@/types/user";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from './userPrefForm.module.css'
+import { useSession } from "next-auth/react";
 /* 
 type UserParams = {
     given_name: string;
@@ -24,12 +25,13 @@ type UserParams = {
 
 export default function UserPreferencesForm(){
 
+  const { data: session } = useSession();
+
   const fields = [
     {id:0, name:"email", label:"Email"},
-    {id:1, name:"password", label:"Password"},
-    {id:2, name:"given_name", label:"First Name"},
-    {id:3, name:"family_name", label:"Last Name"},
-    {id:4, name:"phone_number", label:"Phone Number"}
+    {id:1, name:"given_name", label:"First Name"},
+    {id:2, name:"family_name", label:"Last Name" },
+    {id:3, name:"phone_number", label:"Phone Number"}
 ]
 
   const {
@@ -38,13 +40,13 @@ export default function UserPreferencesForm(){
     watch,
     formState: { errors },
   } = useForm<UserParams>()
-  const onSubmit: SubmitHandler<UserParams> = async (data) => {
-    const res = await fetch('/api/db/userPreferences',{
+  const onSubmit: SubmitHandler<UserParams> = async (userInfo) => {
+    const res = await fetch('/api/db/Users',{
       method: 'Post',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify(userInfo),
     });
   } 
 
@@ -56,11 +58,11 @@ export default function UserPreferencesForm(){
       {/* register your input into the hook by invoking the "register" function */}
 
       {fields.map((field) => 
-      <div key={field.name}
+      <div key={field?.name}
       className={styles.userInputLine}>
-      <label className={styles.userInputLabel}>{field.label}</label>
-      <input className={styles.inputItem} {...register(field.name as keyof UserParams , {required: true})} />
-      {errors[field.name as keyof UserParams] && <span className={styles.spanText}>This field is required</span>}
+      <label className={styles.userInputLabel}>{field?.label}</label>
+      <input className={styles.inputItem} {...register(field?.name as keyof UserParams , {required: true})}  defaultValue={session?.user[field!.name]} maxLength={32}  />
+      {errors[field?.name as keyof UserParams] && <span className={styles.spanText}>This field is required</span>}
       </div>
         )}
 

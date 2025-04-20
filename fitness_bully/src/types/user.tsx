@@ -6,7 +6,6 @@ type UserParams = {
     phone_verified: boolean,
     family_name: string,
     user_id: string,
-    password: string,
     carrier: string
   }
 

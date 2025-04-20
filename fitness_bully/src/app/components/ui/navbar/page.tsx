@@ -26,7 +26,7 @@ export default function NavBar(){
             <div className={styles.container}>
             <div className={styles.children}>
             Signed in as {session?.user.name} <br />
-            <button onClick={() => signOut()}>Sign out</button>
+            <button className={styles.signoutButton}onClick={() => signOut()}>Sign out</button>
             </div>
                 </div>
         )

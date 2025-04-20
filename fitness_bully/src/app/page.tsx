@@ -7,7 +7,7 @@ import Link from "next/link";
 import { paths } from "@/config/paths";
 import { useEffect, useState } from "react";
 import { useSession, signIn, signOut } from "next-auth/react"
-import isDBUser from "./api/db/Users/UserHelpers";
+import {isDBUser} from "./api/db/Users/UserHelpers";
 
 
 
