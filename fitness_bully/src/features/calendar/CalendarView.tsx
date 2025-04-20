@@ -22,15 +22,16 @@ type DayTypeArray = {
 
 
 //TODO remove this, currently hard coded but this is the schema imports from the DB have to folow
-const daysOfTheWeek = [
-    { id: 0, day: "Monday", times: ["7:30AM"] },
-    { id: 1, day: "Tuesday", times: ["8:30AM"] },
-    { id: 2, day: "Wednesday", times: ["9:30AM"] },
-    { id: 3, day: "Thursday", times: ["10:30AM"] },
-    { id: 4, day: "Friday", times: ["11:30AM"] },
-    { id: 5, day: "Saturday", times: ["12:30AM"] },
-    { id: 6, day: "Sunday", times: ["1:30PM","2:30PM"] }
-];
+
+let daysOfTheWeek = [
+    { id: 0, day: "Monday", times: [] },
+    { id: 1, day: "Tuesday", times: [] },
+    { id: 2, day: "Wednesday", times: [] },
+    { id: 3, day: "Thursday", times: [] },
+    { id: 4, day: "Friday", times: [] },
+    { id: 5, day: "Saturday", times: [] },
+    { id: 6, day: "Sunday", times: [] }
+  ];
 
 export default function CalendarView(){
     //popupREf cretes a use ref for the div containing the popup box to edit times. 

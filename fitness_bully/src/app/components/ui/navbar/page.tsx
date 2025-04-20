@@ -26,6 +26,7 @@ export default function NavBar(){
             <div className={styles.container}>
             <div className={styles.children}>
             Signed in as {session?.user.name} <br />
+            <ToCalendar />
             <button className={styles.signoutButton}onClick={() => signOut()}>Sign out</button>
             </div>
                 </div>
@@ -37,7 +38,6 @@ export default function NavBar(){
         <div className={styles.container}>
             <div className={styles.children}>
             <LoginNav />
-            <ToCalendar />
             </div>
         </div>
     );

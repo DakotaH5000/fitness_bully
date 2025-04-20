@@ -1,4 +1,10 @@
 .container{
     z-index: 9999;
     background-color: black;
+    display: flex;
+    flex-direction: column;
+}
+
+.timeRow{
+    display: flex;
 }
