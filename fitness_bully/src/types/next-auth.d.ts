@@ -8,9 +8,10 @@ declare module "next-auth" {
    */
   interface Session {
     user: {
-      [x: string]: ReactNode
+      [x: string]: ReactNode;
+      user_id?: string | number;
       /** The user's postal address. */
-      address: string
+      address: string;
     }
   }
 }
@@ -23,5 +24,6 @@ declare module "next-auth/jwt" {
   interface JWT {
     /** OpenID ID Token */
     idToken?: string
+    user_id: string| number;
   }
 }

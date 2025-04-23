@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { useState } from "react";
 import CalendarBlocks from "./components/CalendarBlocks/CalendarBlocks";
@@ -41,10 +41,11 @@ export default function CalendarView(){
     const [daySelect, setDaySelect] = React.useState<DayTypeArray | null>(null); 
     const [daySelectedBool, setDaySelectedBoolean] = React.useState(false);
 
+
+
     const onDayClick = (day: DayTypeObject) => {
         setDaySelect({ daysOfTheWeek: [day] });
         setDaySelectedBoolean(true);
-        console.log("Pushed");
         console.log(day)
     };
 
@@ -52,10 +53,8 @@ export default function CalendarView(){
     const offDayClick = () => {
         setDaySelect( null );
         setDaySelectedBoolean(false);
-        console.log("off")
     };
     const secondaryClick = (event: MouseEvent) => {
-        console.log("Click");
         if (popupRef.current && !popupRef.current.contains(event.target as Node)) {
           offDayClick(); // Call offDayClick only if the click was outside the popup
         }

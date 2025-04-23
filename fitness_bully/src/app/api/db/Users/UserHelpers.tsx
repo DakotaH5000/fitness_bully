@@ -40,8 +40,7 @@ export async function getUserID(email:string){
      try {
          const response = await fetch(url);
          const data = await response.json()
- 
-         if(data[0].user_id.type()){
+         if(parseInt(data[0].user_id)){
             const user_id = data[0].user_id
             return {User:user_id, exists:true};}
          return {User:null, exists:false};
@@ -49,7 +48,7 @@ export async function getUserID(email:string){
            throw new Error('Network response was not ok');
                  }
          }
-     catch{
+     catch(e){
          return null;
          }
      }

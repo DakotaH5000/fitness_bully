@@ -28,6 +28,8 @@ export async function POST(req: Request){
   const body = await req.json();
   console.log(body);
 
+  return NextResponse.json({status:200})
+
   try {
     const db = await createConnection();
   }
