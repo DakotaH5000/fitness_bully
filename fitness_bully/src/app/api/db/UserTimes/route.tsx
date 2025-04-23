@@ -26,12 +26,34 @@ export async function GET(req: Request) {
 
 export async function POST(req: Request){
   const body = await req.json();
-  console.log(body);
+  console.log(body)
+  console.log("Decomposed Body")
+  const day:string = body[0];
+  const times: string[] = body[1];
+  const UID: number|string = body[2];
 
-  return NextResponse.json({status:200})
 
+
+//TODO create transaction to remove unlisted times
   try {
+
+  //TODO single pass?    
     const db = await createConnection();
+    for(const time of times){
+      const params = [];
+
+
+      params.push(UID);
+      params.push(day)
+      params.push(time)
+      console.log(params)
+    const query = 'INSERT INTO UserTimes(ID, DAY, TIMES)\
+    VALUES(?,?,?)'
+    
+
+    const dbMessage = await db.query(query, params)
+    }
+    return NextResponse.json({status:200})
   }
   catch(error: any){
     console.error('DB error:', error);
