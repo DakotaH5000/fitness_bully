@@ -2,24 +2,6 @@ import UserParams from "@/types/user";
 import { SubmitHandler, useForm } from "react-hook-form";
 import styles from './userPrefForm.module.css'
 import { useSession } from "next-auth/react";
-/* 
-type UserParams = {
-    given_name: string;
-    email: string,
-    phone_number: number,
-    email_verified: boolean,
-    phone_verified: boolean,
-    family_name: string,
-    user_id: string,
-    password: string,
-    carrier: string
-  }
-    */
-
-
-
-
-
 
 
 
