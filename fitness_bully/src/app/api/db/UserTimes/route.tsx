@@ -4,8 +4,8 @@ import { NextResponse } from 'next/server';
 import UserParams from '@/types/user';
 
 export async function GET(req: Request) {
-    const body = await req.json();
-    const userData: UserParams =  body;
+  const { searchParams } = new URL(req.url);
+  const UID = searchParams.get('user_id');
   try {
     const db = await createConnection();
 
@@ -15,7 +15,8 @@ export async function GET(req: Request) {
       return NextResponse.json({ error: 'Database connection failed' }, { status: 500 });
     }
 
-    const [Users] = await db.query('SELECT * FROM UserTimes WHERE user_id = ?', [userData.user_id]);
+    const [Users] = await db.query('SELECT * FROM UserTimes WHERE user_id = ?', [UID]);
+    console.log([Users])
     return NextResponse.json(Users);
   } catch (error: any) {
     console.error('DB error:', error);
@@ -25,10 +26,11 @@ export async function GET(req: Request) {
 
 
 export async function POST(req: Request){
+  const days= ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
   const body = await req.json();
   console.log(body)
   console.log("Decomposed Body")
-  const day:string = body[0];
+  let day:number = days.indexOf(body[0])
   const times: string[] = body[1];
   const UID: number|string = body[2];
 
@@ -42,13 +44,14 @@ export async function POST(req: Request){
     for(const time of times){
       const params = [];
 
-
+      
       params.push(UID);
       params.push(day)
       params.push(time)
       console.log(params)
     const query = 'INSERT INTO UserTimes(ID, DAY, TIMES)\
     VALUES(?,?,?)'
+    console.log()
     
 
     const dbMessage = await db.query(query, params)

@@ -80,8 +80,8 @@ export default function DayPopup({dayOfTheWeek, daySelectedBool}: DayPopUpProps)
                 ></input>
                 <button onClick={() => timeHandler()}>Add Time</button>
                 <div>{times.map((time, index) =>
-                <div className={style.timeRow}>
-                    <p key={time}>{time}</p>
+                <div  key={time} className={style.timeRow}>
+                    <p >{time}</p>
                     <button onClick={() => removeTime(time)}>X</button>
                     </div>
                     

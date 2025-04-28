@@ -36,7 +36,6 @@ export async function getUserID(email:string){
     const BaseURL = 'http://localhost:3000/api/db/Users';
     if(email){
         const url = `${BaseURL}?email=${encodeURIComponent(email)}`
-         console.log(`url is ${url}`)
      try {
          const response = await fetch(url);
          const data = await response.json()

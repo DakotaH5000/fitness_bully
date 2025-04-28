@@ -14,7 +14,6 @@ import {isDBUser} from "./api/db/Users/UserHelpers";
 export default function Home() {
 
   const { data: session } = useSession();
-  console.log(session?.user.email)
   const [isDBRegistered, setIsDBRegistered] = useState<Boolean|null|undefined>(null);
 
   useEffect(() => {
